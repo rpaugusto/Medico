@@ -6,6 +6,7 @@
             <name>Medico</name>
             <source-roots>
                 <root id="src.dir"/>
+                <root id="src.reports.dir" name="Pacote de Relatorios"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>

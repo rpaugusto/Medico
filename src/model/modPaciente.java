@@ -37,7 +37,8 @@ public class modPaciente {
     //construtor set campos
     public modPaciente(int id, String nome, String rg, String cpf, String endereco,
             String bairro, String cidade, String uf, String cep, String telefone,
-            String celular, String email, String cadastrado, String atualizado, String sexo) {
+            String celular, String email, String cadastrado, String atualizado,
+            String sexo) {
         
         this.id = id;
         this.nome = nome;
