@@ -7,7 +7,7 @@ package view;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import reports.relListPaciente;
+import reports.relPaciente;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,35 +33,40 @@ public class frmDesktop extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        desktop = new javax.swing.JFrame();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        mnSair = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
+        javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop.getContentPane());
+        desktop.getContentPane().setLayout(desktopLayout);
+        desktopLayout.setHorizontalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        desktopLayout.setVerticalGroup(
+            desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jButton1.setText("sair");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("relatorio");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        setTitle("AREA DE TRABALHO");
 
         jMenu3.setText("CADASTROS");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
 
         jMenuItem2.setText("PACIENTE");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +78,15 @@ public class frmDesktop extends javax.swing.JFrame {
 
         jMenuItem3.setText("FUNCIONARIO");
         jMenu3.add(jMenuItem3);
+        jMenu3.add(jSeparator1);
+
+        jMenuItem5.setText("teste janela");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem5);
 
         jMenuBar1.add(jMenu3);
 
@@ -97,27 +111,25 @@ public class frmDesktop extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        mnSair.setText("SAIR");
+        mnSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnSairMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(mnSair);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(337, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(323, 323, 323))
+            .addGap(0, 733, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
-                .addContainerGap(333, Short.MAX_VALUE))
+            .addGap(0, 433, Short.MAX_VALUE)
         );
 
         pack();
@@ -126,7 +138,7 @@ public class frmDesktop extends javax.swing.JFrame {
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         // TODO add your handling code here:
         try {
-            new relListPaciente();
+            new relPaciente();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: "+ e.getMessage());
         }
@@ -146,28 +158,27 @@ public class frmDesktop extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         try {
-            new relListPaciente();
+            new relPaciente();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: "+ e.getMessage());
         }
         
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void mnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSairMouseClicked
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_mnSairMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+       
         
-        try {
-            new relListPaciente();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: "+ e.getMessage());
-        }
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,15 +216,17 @@ public class frmDesktop extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    public static javax.swing.JFrame desktop;
+    public static javax.swing.JMenu jMenu1;
+    public static javax.swing.JMenu jMenu2;
+    public static javax.swing.JMenu jMenu3;
+    public static javax.swing.JMenuBar jMenuBar1;
+    public static javax.swing.JMenuItem jMenuItem1;
+    public static javax.swing.JMenuItem jMenuItem2;
+    public static javax.swing.JMenuItem jMenuItem3;
+    public static javax.swing.JMenuItem jMenuItem4;
+    public static javax.swing.JMenuItem jMenuItem5;
+    public static javax.swing.JPopupMenu.Separator jSeparator1;
+    public static javax.swing.JMenu mnSair;
     // End of variables declaration//GEN-END:variables
 }

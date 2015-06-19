@@ -463,9 +463,9 @@ public class frmFuncionario extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -784,7 +784,7 @@ public class frmFuncionario extends javax.swing.JFrame {
         Pattern pt = Pattern.compile(".+@.+\\.[a..z]{2,}+");
         Matcher mt = pt.matcher(edtEmail.getText());
 
-        if (!mt.find()) {
+        if (mt.find()) {
             lbEmail.setText("invalido!");
         } else {
             lbEmail.setText("valido!");
@@ -796,9 +796,9 @@ public class frmFuncionario extends javax.swing.JFrame {
 
         int ln = tbBusca.getSelectedRow();
 
-        obj = new modPaciente();
+        obj = new modFuncionario();
 
-        ln = (tbBusca.getValueAt(ln, 0).hashCode());
+        ln = Integer.parseInt(tbBusca.getValueAt(ln, 0));
 
         try {
             retornaObj(dao.select(null, ln));
@@ -812,8 +812,8 @@ public class frmFuncionario extends javax.swing.JFrame {
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
         // TODO add your handling code here:
-        obj = new modPaciente();
-        ArrayList<modPaciente> lsPac;
+        obj = new modFuncionario();
+        ArrayList<modFuncionario> lsPac;
 
         if (edtBusca.getText().equals("")) {
             obj.setNome("%");
@@ -825,7 +825,7 @@ public class frmFuncionario extends javax.swing.JFrame {
         tbBusca.setModel(tbl);
 
         try {
-            ContPaciente dao = new ContPaciente();
+            ContFuncionario dao = new ContFuncionario();
 
             lsPac = dao.selectAll(obj);
 

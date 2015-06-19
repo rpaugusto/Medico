@@ -47,9 +47,9 @@ public class ContPaciente {
 
         Conexao con = new Conexao();
 
-        this.sql = "UPDATE pessoas SET (nome = ?, endereco = ?, bairro = ?,"
+        this.sql = "UPDATE pessoas SET nome = ?, endereco = ?, bairro = ?,"
                 + " cep = ?, cidade = ?, estado = ?, telefone = ?, celular = ?,"
-                + " cpf = ?, rg = ?, email = ?) WHERE id = ?";
+                + " cpf = ?, rg = ?, email = ? WHERE id = ?";
 
         this.ps = con.openCon().prepareStatement(this.sql);
 

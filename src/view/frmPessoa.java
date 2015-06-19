@@ -7,15 +7,17 @@ import controller.ContPaciente;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.table.DefaultTableModel;
+import reports.relPaciente;
 
 /**
  * @data 17/06/2015
  * @author RUI PENTEADO
  */
 public class frmPessoa extends javax.swing.JFrame {
-    
+
     modPaciente obj;
     ContPaciente dao = new ContPaciente();
+    relPaciente rel = new relPaciente();
     int acao = 0;
 
     /**
@@ -134,6 +136,11 @@ public class frmPessoa extends javax.swing.JFrame {
 
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/48_print.png"))); // NOI18N
         btnImprimir.setEnabled(false);
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
 
         btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/48_search.png"))); // NOI18N
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -610,7 +617,7 @@ public class frmPessoa extends javax.swing.JFrame {
 
         ativaCampos(true);
         ativaMenu(true);
-        
+
         acao = 2;
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -662,7 +669,7 @@ public class frmPessoa extends javax.swing.JFrame {
 
         ativaCampos(false);
         ativaMenu(false);
-        
+
         acao = 0;
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -673,19 +680,19 @@ public class frmPessoa extends javax.swing.JFrame {
 
     private void btnNovoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnNovoFocusGained
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnNovoFocusGained
 
     private void btnNovoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnNovoFocusLost
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnNovoFocusLost
 
     private void edtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edtEmailFocusLost
         // TODO add your handling code here:
         Pattern pt = Pattern.compile(".+@.+\\.[a..z]{2,}+");
         Matcher mt = pt.matcher(edtEmail.getText());
-        
+
         if (!mt.find()) {
             lbEmail.setText("invalido!");
         } else {
@@ -697,30 +704,30 @@ public class frmPessoa extends javax.swing.JFrame {
         // TODO add your handling code here:
         obj = new modPaciente();
         ArrayList<modPaciente> lsPac;
-        
+
         if (edtBusca.getText().equals("")) {
             obj.setNome("%");
         } else {
             obj.setNome(edtBusca.getText());
         }
-        
+
         DefaultTableModel tbl = new DefaultTableModel();
         tbBusca.setModel(tbl);
-        
+
         try {
             ContPaciente dao = new ContPaciente();
-            
+
             lsPac = dao.selectAll(obj);
-            
+
             tbl.addColumn("CODIOGO");
             tbl.addColumn("NOME");
             tbl.addColumn("CPF");
             tbl.addColumn("TELEFONE");
-            
+
             Object[] coluna = new Object[4];
-            
+
             int ln = lsPac.size();
-            
+
             for (int i = 0; i < ln; i++) {
                 coluna[0] = lsPac.get(i).getId();
                 coluna[1] = lsPac.get(i).getNome();
@@ -728,32 +735,43 @@ public class frmPessoa extends javax.swing.JFrame {
                 coluna[3] = lsPac.get(i).getTelefone();
                 tbl.addRow(coluna);
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
-        
+
     }//GEN-LAST:event_btnBuscaActionPerformed
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
-        
+
         int id = Integer.parseInt(tbBusca.getValueAt(tbBusca.getSelectedRow(), 0).toString());
-        
+
         try {
             retornaObj(dao.selectId(id));
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: "+e.getMessage());
-        }        
-        
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+
         jTabbedPane2.setSelectedIndex(0);
-        
+
     }//GEN-LAST:event_tbBuscaMouseClicked
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
         jTabbedPane2.setSelectedIndex(1);
     }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        // TODO add your handling code here:
+        if (preencehrObj()) {
+            try {
+                rel.ficPaciente(obj);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -846,43 +864,47 @@ public class frmPessoa extends javax.swing.JFrame {
     /*
      * METODOS UTILIZADOS PARA A FUNCINALIDADE DO FORMULARIO
      */
-  
-    
+    private String rem(String sj) {
+
+        String lp = sj.replaceAll("[.-]", "");
+
+        return lp;
+    }
+
     private boolean validacampos() {
         // validação dos campos obrigatorios do fomulario
 
-        if (edtCpf.getText().equals("")) {
+        if (rem(edtCpf.getText()).equals("")) {
             JOptionPane.showMessageDialog(this, "Campo CPF em Branco não é"
                     + " permitido!", "Validar Campo", 0);
             edtCpf.requestFocus();
             return false;
         }
-        
+
         if (edtNome.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Campo NOME em Branco não é"
                     + " permitido!", "Validar Campo", 0);
             edtNome.requestFocus();
             return false;
         }
-        
+
         if (edtTelefone.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Campo TELEFONE em Branco não é"
                     + " permitido!", "Validar Campo", 0);
             edtTelefone.requestFocus();
             return false;
         }
-        
-        if (edtUf.getText().length() < 2){
+
+        if (edtUf.getText().length() > 2) {
             JOptionPane.showMessageDialog(this, "Campo UF possui mais de 2"
                     + " caracteres!", "Validar Campo", 0);
             edtUf.requestFocus();
             return false;
         }
-        
-        
+
         return true;
     }
-    
+
     private void limpaCampos() {
         //limpando os campos de texto
 
@@ -902,9 +924,9 @@ public class frmPessoa extends javax.swing.JFrame {
         cbxSexo.setSelectedIndex(0);
         lbMessage.setText(null);
         lbEmail.setText(null);
-        
+
     }
-    
+
     private void ativaCampos(boolean ativo) {
         //ativando oss campos para escrever 
 
@@ -921,9 +943,9 @@ public class frmPessoa extends javax.swing.JFrame {
         edtTelefone.setEnabled(ativo);
         edtUf.setEnabled(ativo);
         cbxSexo.setEnabled(ativo);
-        
+
     }
-    
+
     private void ativaMenu(boolean ativo) {
         //barra de meus
 
@@ -935,13 +957,13 @@ public class frmPessoa extends javax.swing.JFrame {
         }
         btnSalvar.setEnabled(ativo);
         btnCancelar.setEnabled(ativo);
-        
+
     }
-    
-    private boolean preencehrObj() throws Exception {
-        
+//throws Exception
+    private boolean preencehrObj()  {
+
         obj = new modPaciente();
-        
+
         obj.setNome(edtNome.getText());
         obj.setEndereco(edtEndereco.getText());
         obj.setBairro(edtBairro.getText());
@@ -953,14 +975,14 @@ public class frmPessoa extends javax.swing.JFrame {
         obj.setCep(edtCep.getText());
         obj.setUf(edtUf.getText());
         obj.setSexo(cbxSexo.getSelectedItem().toString());
-        
+
         return true;
     }
-    
+
     private void retornaObj(modPaciente retObj) {
         //retorna obj para o formulario    
         obj = retObj;
-        
+
         edtBairro.setText(obj.getBairro());
         edtCelular.setText(obj.getCelular());
         edtCep.setText(obj.getCep());
@@ -974,16 +996,16 @@ public class frmPessoa extends javax.swing.JFrame {
         edtTelefone.setText(obj.getTelefone());
         edtUf.setText(obj.getUf());
         //cbxSexo.setSelectedItem(Obj.getSexo());
-        
+
         ativaMenu(false);
-        
+
     }
-    
+
     private void preencherTb() throws Exception {
-        
+
         ArrayList dados = new ArrayList();
         String[] colunas = new String[]{"id", "nome", "cpf", "telefone"};
-        
+
     }
-    
+
 }
