@@ -11,7 +11,7 @@ import model.modPaciente;
  */
 public class ContPaciente {
 
-    //TRIBUTOS
+    //ATRIBUTOS
     private String sql;
     private PreparedStatement ps;
     private ResultSet rs;
@@ -70,8 +70,8 @@ public class ContPaciente {
 
     }
 
-    public boolean delete(modPaciente obj) throws SQLException{
-        
+    public boolean delete(modPaciente obj) throws SQLException {
+
         Conexao con = new Conexao();
 
         this.sql = "DELETE FOM pessoas WHERE id = ?";
@@ -80,19 +80,52 @@ public class ContPaciente {
         this.ps.setInt(1, obj.getId());
 
         return this.ps.executeUpdate() > 0;
-        
+
     }
 
-    public modPaciente select(modPaciente obj) throws SQLException {
-
+    public modPaciente selectId(int id) throws SQLException {
         modPaciente loc = null;
 
         Conexao con = new Conexao();
 
-        this.sql = "SELECT * FROM pessoas WHERE cpf = ?";
+        this.sql = "SELECT * FROM pessoas WHERE id = ?";
 
         this.ps = con.openCon().prepareStatement(this.sql);
-        this.ps.setString(1, obj.getCpf());
+        this.ps.setInt(1, id);
+
+        this.rs = this.ps.executeQuery();
+
+        if (rs.next()) {
+            loc = new modPaciente(
+                    rs.getInt("id"),
+                    rs.getString("nome"),
+                    rs.getString("rg"),
+                    rs.getString("cpf"),
+                    rs.getString("endereco"),
+                    rs.getString("bairro"),
+                    rs.getString("cidade"),
+                    rs.getString("estado"),
+                    rs.getString("cep"),
+                    rs.getString("telefone"),
+                    rs.getString("celular"),
+                    rs.getString("email"),
+                    rs.getString("cadastrado"),
+                    rs.getString("atualizado"),
+                    rs.getString("sexo")
+            );
+        }
+
+        return loc;
+    }
+
+    public modPaciente selectCpf(String cpf) throws SQLException {
+
+        modPaciente loc = null;
+
+        Conexao con = new Conexao();
+        this.sql = "SELECT * FROM pessoas WHERE cpf = ?";
+        this.ps = con.openCon().prepareStatement(this.sql);
+        this.ps.setString(1, cpf);
 
         this.rs = this.ps.executeQuery();
 
@@ -119,51 +152,51 @@ public class ContPaciente {
         return loc;
 
     }
-    
+
     public ArrayList<modPaciente> selectAll(modPaciente obj) throws SQLException {
-        
+
         modPaciente loc;
-        
+
         Conexao con = new Conexao();
-        
+
         ArrayList<modPaciente> lsPac = new ArrayList<>();
         if (obj.getNome().equals(null)) {
             this.sql = "SELECT * FROM pessoas";
             this.ps = con.openCon().prepareStatement(this.sql);
-        } else {    
+        } else {
             this.sql = "SELECT * FROM pessoas WHERE nome LIKE ?";
             this.ps = con.openCon().prepareStatement(this.sql);
-            this.ps.setString(1, (obj.getNome()+"%"));
-        }        
-        
+            this.ps.setString(1, (obj.getNome() + "%"));
+        }
+
         this.rs = this.ps.executeQuery();
-        
+
         if (rs != null) {
             while (rs.next()) {
                 loc = new modPaciente(
-                    rs.getInt("id"),
-                    rs.getString("nome"),
-                    rs.getString("rg"),
-                    rs.getString("cpf"),
-                    rs.getString("endereco"),
-                    rs.getString("bairro"),
-                    rs.getString("cidade"),
-                    rs.getString("estado"),
-                    rs.getString("cep"),
-                    rs.getString("telefone"),
-                    rs.getString("celular"),
-                    rs.getString("email"),
-                    rs.getString("cadastrado"),
-                    rs.getString("atualizado"),
-                    rs.getString("sexo")
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("rg"),
+                        rs.getString("cpf"),
+                        rs.getString("endereco"),
+                        rs.getString("bairro"),
+                        rs.getString("cidade"),
+                        rs.getString("estado"),
+                        rs.getString("cep"),
+                        rs.getString("telefone"),
+                        rs.getString("celular"),
+                        rs.getString("email"),
+                        rs.getString("cadastrado"),
+                        rs.getString("atualizado"),
+                        rs.getString("sexo")
                 );
                 lsPac.add(loc);
             }
             return lsPac;
         }
-        
+
         return null;
-    
+
     }
 
 }

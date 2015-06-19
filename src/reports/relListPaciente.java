@@ -30,7 +30,7 @@ public class relListPaciente {
         JRResultSetDataSource jrs = new JRResultSetDataSource(this.rs);
         HashMap map = new HashMap();
         JasperPrint jp = JasperFillManager.fillReport("reports/relListPaciente.jasper", map, jrs);
-        JasperViewer.viewReport(jp, false);
+        JasperViewer.viewReport(jp, true);
         
     }
     

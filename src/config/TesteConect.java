@@ -5,16 +5,20 @@
  */
 package config;
 
+import controller.ContPaciente;
+import view.frmPessoa;
+
 /**
  *
  * @author rui
  */
 public class TesteConect {
-    
+
     public static void main(String[] args) {
-        
+
         Conexao c = new Conexao();
         System.out.println(c.openCon());
+     
     }
-    
+
 }

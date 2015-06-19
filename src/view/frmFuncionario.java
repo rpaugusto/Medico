@@ -2,26 +2,26 @@ package view;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import model.modPaciente;
-import controller.ContPaciente;
+import model.modFuncionario;
+import controller.conFuncionario;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * @data 17/06/2015
+ * @data 19/06/2015
  * @author RUI PENTEADO
  */
-public class frmPessoa extends javax.swing.JFrame {
-    
-    modPaciente obj;
-    ContPaciente dao = new ContPaciente();
-    int acao = 0;
+public class frmFuncionario extends javax.swing.JFrame {
 
+    modFuncionario obj;
+    conFuncionario dao = new conFuncionario();
+    int acao = 0;
+    
     /**
-     * Creates new form frmPessoa
+     * Creates new form frmFuncionario
      */
-    public frmPessoa() {
+    public frmFuncionario() {
         initComponents();
     }
 
@@ -73,6 +73,14 @@ public class frmPessoa extends javax.swing.JFrame {
         cbxSexo = new javax.swing.JComboBox();
         jLabel14 = new javax.swing.JLabel();
         lbEmail = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        edtUsuario = new javax.swing.JTextField();
+        edtSenha = new javax.swing.JPasswordField();
+        jLabel16 = new javax.swing.JLabel();
+        cbFuncao = new javax.swing.JComboBox();
+        jLabel17 = new javax.swing.JLabel();
+        edtConselho = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         lbMessage = new javax.swing.JLabel();
         pnBusca = new javax.swing.JPanel();
@@ -274,6 +282,11 @@ public class frmPessoa extends javax.swing.JFrame {
                 edtEmailFocusLost(evt);
             }
         });
+        edtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtEmailActionPerformed(evt);
+            }
+        });
 
         cbxSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...", "MASCULINO", "FEMININO" }));
         cbxSexo.setEnabled(false);
@@ -282,6 +295,24 @@ public class frmPessoa extends javax.swing.JFrame {
         jLabel14.setText("SEXO");
 
         lbEmail.setForeground(java.awt.Color.yellow);
+
+        jLabel6.setText("USUARIO");
+
+        edtUsuario.setEnabled(false);
+
+        edtSenha.setText("123456");
+        edtSenha.setEnabled(false);
+
+        jLabel16.setText("SENHA");
+
+        cbFuncao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...", "MEDICO", "SECRETARIA", "GERENTE" }));
+        cbFuncao.setEnabled(false);
+
+        jLabel17.setText("FUNÇÃO");
+
+        edtConselho.setEnabled(false);
+
+        jLabel18.setText("CONSELHO");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -298,13 +329,10 @@ public class frmPessoa extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(519, 623, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(edtNome)
                                 .addContainerGap())))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(edtEndereco)
-                        .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(edtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -320,40 +348,66 @@ public class frmPessoa extends javax.swing.JFrame {
                                 .addComponent(edtUf, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(edtBairro))))
-                    .addComponent(edtEmail)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(edtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addGap(52, 52, 52)
+                                        .addComponent(lbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(edtEndereco)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(edtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
+                                    .addComponent(jLabel3)
+                                    .addComponent(edtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
-                                    .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(edtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel18)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(edtConselho))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(edtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10)))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lbEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(edtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel10)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(edtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(edtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel13)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(jLabel6)
+                                                .addGap(112, 112, 112)
+                                                .addComponent(jLabel16)))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(edtEmail)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(edtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(edtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(196, 196, 196))))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel17)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(cbFuncao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,19 +417,33 @@ public class frmPessoa extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edtRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(edtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edtRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edtConselho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -392,21 +460,29 @@ public class frmPessoa extends javax.swing.JFrame {
                     .addComponent(edtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel12))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(edtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(edtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel16)
+                                .addComponent(jLabel17)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(edtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(edtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbFuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -444,7 +520,7 @@ public class frmPessoa extends javax.swing.JFrame {
                 .addGroup(pnCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 727, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnCadastroLayout.setVerticalGroup(
@@ -479,21 +555,40 @@ public class frmPessoa extends javax.swing.JFrame {
 
         tbBusca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "CODIGO", "NOME", "TELEFONE", "CPF"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbBusca.getTableHeader().setReorderingAllowed(false);
         tbBusca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbBuscaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbBusca);
+        if (tbBusca.getColumnModel().getColumnCount() > 0) {
+            tbBusca.getColumnModel().getColumn(0).setResizable(false);
+            tbBusca.getColumnModel().getColumn(1).setResizable(false);
+            tbBusca.getColumnModel().getColumn(2).setResizable(false);
+            tbBusca.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -508,7 +603,7 @@ public class frmPessoa extends javax.swing.JFrame {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -527,7 +622,7 @@ public class frmPessoa extends javax.swing.JFrame {
         });
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel15.setText("NOME DO PACIENTE A SER LOCALIZADO...");
+        jLabel15.setText("NOME DO FUNCIONARIO A SER LOCALIZADO...");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -595,6 +690,16 @@ public class frmPessoa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnNovoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnNovoFocusGained
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnNovoFocusGained
+
+    private void btnNovoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnNovoFocusLost
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnNovoFocusLost
+
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
 
@@ -602,7 +707,6 @@ public class frmPessoa extends javax.swing.JFrame {
         ativaMenu(true);
         limpaCampos();
         acao = 1;
-
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -610,7 +714,7 @@ public class frmPessoa extends javax.swing.JFrame {
 
         ativaCampos(true);
         ativaMenu(true);
-        
+
         acao = 2;
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -623,24 +727,24 @@ public class frmPessoa extends javax.swing.JFrame {
                     if (acao == 1) {
                         if (dao.insert(obj)) {
                             JOptionPane.showMessageDialog(this,
-                                    "Cadastro realizado com sucesso!",
-                                    "CADASTRO DE PACIENTES", 1);
+                                "Cadastro realizado com sucesso!",
+                                "CADASTRO DE PACIENTES", 1);
                             ativaMenu(false);
-                            retornaObj(dao.selectCpf(obj.getCpf()));
+                            retornaObj(obj);
                         } else {
                             JOptionPane.showMessageDialog(this, "Erro ao cadastrar!",
-                                    "CADASTRO DE PACIENTES", 1);
+                                "CADASTRO DE PACIENTES", 1);
                         }
                     } else if (acao == 2) {
                         if (dao.update(obj)) {
                             JOptionPane.showMessageDialog(this,
-                                    "Atualizado com sucesso!",
-                                    "CADASTRO DE PACIENTES", 1);
+                                "Atualizado com sucesso!",
+                                "CADASTRO DE PACIENTES", 1);
                             ativaMenu(false);
-                            retornaObj(dao.selectCpf(obj.getCpf()));
+                            retornaObj(obj);
                         } else {
                             JOptionPane.showMessageDialog(this, "Erro ao atualizar!",
-                                    "CADASTRO DE PACIENTES", 1);
+                                "CADASTRO DE PACIENTES", 1);
                         }
                     } else {
                         lbMessage.setText("Não reconheceu a ação!");
@@ -654,7 +758,6 @@ public class frmPessoa extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage(), "Error", 1);
         }
-
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -662,30 +765,25 @@ public class frmPessoa extends javax.swing.JFrame {
 
         ativaCampos(false);
         ativaMenu(false);
-        
+
         acao = 0;
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane2.setSelectedIndex(1);
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnFecharActionPerformed
 
-    private void btnNovoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnNovoFocusGained
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnNovoFocusGained
-
-    private void btnNovoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnNovoFocusLost
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_btnNovoFocusLost
-
     private void edtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_edtEmailFocusLost
         // TODO add your handling code here:
         Pattern pt = Pattern.compile(".+@.+\\.[a..z]{2,}+");
         Matcher mt = pt.matcher(edtEmail.getText());
-        
+
         if (!mt.find()) {
             lbEmail.setText("invalido!");
         } else {
@@ -693,34 +791,53 @@ public class frmPessoa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_edtEmailFocusLost
 
+    private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
+        // TODO add your handling code here:
+
+        int ln = tbBusca.getSelectedRow();
+
+        obj = new modPaciente();
+
+        ln = (tbBusca.getValueAt(ln, 0).hashCode());
+
+        try {
+            retornaObj(dao.select(null, ln));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: "+e.getMessage());
+        }
+
+        jTabbedPane2.setSelectedIndex(0);
+
+    }//GEN-LAST:event_tbBuscaMouseClicked
+
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
         // TODO add your handling code here:
         obj = new modPaciente();
         ArrayList<modPaciente> lsPac;
-        
+
         if (edtBusca.getText().equals("")) {
             obj.setNome("%");
         } else {
             obj.setNome(edtBusca.getText());
         }
-        
+
         DefaultTableModel tbl = new DefaultTableModel();
         tbBusca.setModel(tbl);
-        
+
         try {
             ContPaciente dao = new ContPaciente();
-            
+
             lsPac = dao.selectAll(obj);
-            
+
             tbl.addColumn("CODIOGO");
             tbl.addColumn("NOME");
             tbl.addColumn("CPF");
             tbl.addColumn("TELEFONE");
-            
+
             Object[] coluna = new Object[4];
-            
+
             int ln = lsPac.size();
-            
+
             for (int i = 0; i < ln; i++) {
                 coluna[0] = lsPac.get(i).getId();
                 coluna[1] = lsPac.get(i).getNome();
@@ -728,32 +845,16 @@ public class frmPessoa extends javax.swing.JFrame {
                 coluna[3] = lsPac.get(i).getTelefone();
                 tbl.addRow(coluna);
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
-        
+
     }//GEN-LAST:event_btnBuscaActionPerformed
 
-    private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
+    private void edtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtEmailActionPerformed
         // TODO add your handling code here:
-        
-        int id = Integer.parseInt(tbBusca.getValueAt(tbBusca.getSelectedRow(), 0).toString());
-        
-        try {
-            retornaObj(dao.selectId(id));
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: "+e.getMessage());
-        }        
-        
-        jTabbedPane2.setSelectedIndex(0);
-        
-    }//GEN-LAST:event_tbBuscaMouseClicked
-
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        // TODO add your handling code here:
-        jTabbedPane2.setSelectedIndex(1);
-    }//GEN-LAST:event_btnPesquisarActionPerformed
+    }//GEN-LAST:event_edtEmailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -772,20 +873,20 @@ public class frmPessoa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmPessoa().setVisible(true);
+                new frmFuncionario().setVisible(true);
             }
         });
     }
@@ -800,20 +901,24 @@ public class frmPessoa extends javax.swing.JFrame {
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JComboBox cbFuncao;
     private javax.swing.JComboBox cbxSexo;
     private javax.swing.JTextField edtBairro;
     private javax.swing.JTextField edtBusca;
     private javax.swing.JFormattedTextField edtCelular;
     private javax.swing.JFormattedTextField edtCep;
     private javax.swing.JTextField edtCidade;
+    private javax.swing.JTextField edtConselho;
     private javax.swing.JFormattedTextField edtCpf;
     private javax.swing.JTextField edtEmail;
     private javax.swing.JTextField edtEndereco;
     private javax.swing.JTextField edtId;
     private javax.swing.JTextField edtNome;
     private javax.swing.JTextField edtRg;
+    private javax.swing.JPasswordField edtSenha;
     private javax.swing.JFormattedTextField edtTelefone;
     private javax.swing.JTextField edtUf;
+    private javax.swing.JTextField edtUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -821,10 +926,14 @@ public class frmPessoa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -843,11 +952,9 @@ public class frmPessoa extends javax.swing.JFrame {
     private javax.swing.JTable tbBusca;
     // End of variables declaration//GEN-END:variables
 
-    /*
+     /*
      * METODOS UTILIZADOS PARA A FUNCINALIDADE DO FORMULARIO
      */
-  
-    
     private boolean validacampos() {
         // validação dos campos obrigatorios do fomulario
 
@@ -869,13 +976,6 @@ public class frmPessoa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Campo TELEFONE em Branco não é"
                     + " permitido!", "Validar Campo", 0);
             edtTelefone.requestFocus();
-            return false;
-        }
-        
-        if (edtUf.getText().length() < 2){
-            JOptionPane.showMessageDialog(this, "Campo UF possui mais de 2"
-                    + " caracteres!", "Validar Campo", 0);
-            edtUf.requestFocus();
             return false;
         }
         
@@ -952,15 +1052,14 @@ public class frmPessoa extends javax.swing.JFrame {
         obj.setRg(edtRg.getText());
         obj.setCep(edtCep.getText());
         obj.setUf(edtUf.getText());
-        obj.setSexo(cbxSexo.getSelectedItem().toString());
+        obj.setSexo(cbxSexo.getSelectedItem().toString().toUpperCase());
         
         return true;
     }
     
-    private void retornaObj(modPaciente retObj) {
+    private void retornaObj(modPaciente Obj) {
         //retorna obj para o formulario    
-        obj = retObj;
-        
+
         edtBairro.setText(obj.getBairro());
         edtCelular.setText(obj.getCelular());
         edtCep.setText(obj.getCep());
@@ -973,9 +1072,7 @@ public class frmPessoa extends javax.swing.JFrame {
         edtRg.setText(obj.getRg());
         edtTelefone.setText(obj.getTelefone());
         edtUf.setText(obj.getUf());
-        //cbxSexo.setSelectedItem(Obj.getSexo());
-        
-        ativaMenu(false);
+        cbxSexo.setSelectedItem(Obj.getSexo());
         
     }
     
@@ -985,5 +1082,5 @@ public class frmPessoa extends javax.swing.JFrame {
         String[] colunas = new String[]{"id", "nome", "cpf", "telefone"};
         
     }
-    
+
 }
