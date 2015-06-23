@@ -82,12 +82,12 @@
                       <Component id="btnNovo5" alignment="0" max="32767" attributes="0"/>
                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                           <Component id="btnFechar3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="btnImprimir3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnEditar3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnSalvar3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnCancelar3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnExcluir3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnImprimir3" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

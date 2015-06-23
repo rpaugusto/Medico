@@ -135,12 +135,12 @@ public class frmPlano extends javax.swing.JFrame {
                     .addComponent(btnNovo5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btnFechar3)
+                        .addComponent(btnImprimir3)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnEditar3)
                             .addComponent(btnSalvar3)
                             .addComponent(btnCancelar3)
-                            .addComponent(btnExcluir3)
-                            .addComponent(btnImprimir3))))
+                            .addComponent(btnExcluir3))))
                 .addGap(0, 6, Short.MAX_VALUE))
         );
 
@@ -417,36 +417,12 @@ public class frmPlano extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCancelar1;
-    private javax.swing.JButton btnCancelar2;
     private javax.swing.JButton btnCancelar3;
-    private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnEditar1;
-    private javax.swing.JButton btnEditar2;
     private javax.swing.JButton btnEditar3;
-    private javax.swing.JButton btnExcluir;
-    private javax.swing.JButton btnExcluir1;
-    private javax.swing.JButton btnExcluir2;
     private javax.swing.JButton btnExcluir3;
-    private javax.swing.JButton btnFechar;
-    private javax.swing.JButton btnFechar1;
-    private javax.swing.JButton btnFechar2;
     private javax.swing.JButton btnFechar3;
-    private javax.swing.JButton btnImprimir;
-    private javax.swing.JButton btnImprimir1;
-    private javax.swing.JButton btnImprimir2;
     private javax.swing.JButton btnImprimir3;
-    private javax.swing.JButton btnNovo;
-    private javax.swing.JButton btnNovo1;
-    private javax.swing.JButton btnNovo2;
-    private javax.swing.JButton btnNovo3;
-    private javax.swing.JButton btnNovo4;
     private javax.swing.JButton btnNovo5;
-    private javax.swing.JButton btnPesquisar;
-    private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton btnSalvar1;
-    private javax.swing.JButton btnSalvar2;
     private javax.swing.JButton btnSalvar3;
     private javax.swing.JFormattedTextField edtData;
     private javax.swing.JTextField edtId;
@@ -457,20 +433,11 @@ public class frmPlano extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JPanel pnCadastro;
-    private javax.swing.JPanel pnCadastro1;
     // End of variables declaration//GEN-END:variables
 
     private void ativaMenu(boolean ativo) {
