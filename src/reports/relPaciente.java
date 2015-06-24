@@ -14,12 +14,12 @@ import model.modPaciente;
  */
 public class relPaciente {
 
-    private Conexao r_con = new Conexao();
+    private final Conexao r_con = new Conexao();
     private String sql;
     private PreparedStatement ps;
     private ResultSet rs;
 
-    public void relPaciente() throws Exception {
+    public void listPaciente() throws Exception {
 
         this.sql = "SELECT * FROM pessoas";
 

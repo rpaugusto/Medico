@@ -35,13 +35,18 @@ public class frmDesktop extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         desktop = new javax.swing.JFrame();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
+        mnCadastro = new javax.swing.JMenu();
+        cadPaciente = new javax.swing.JMenuItem();
+        cadFuncionario = new javax.swing.JMenuItem();
+        cadPlano = new javax.swing.JMenuItem();
+        mnRelatorio = new javax.swing.JMenu();
+        relPaciente = new javax.swing.JMenu();
+        listPaciente = new javax.swing.JMenuItem();
+        ficPaciente = new javax.swing.JMenuItem();
+        ficProntuario = new javax.swing.JMenuItem();
+        relFuncionario = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         mnSair = new javax.swing.JMenu();
 
@@ -61,55 +66,73 @@ public class frmDesktop extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AREA DE TRABALHO");
 
-        jMenu3.setText("CADASTROS");
-        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+        mnCadastro.setText("CADASTROS");
+        mnCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu3ActionPerformed(evt);
+                mnCadastroActionPerformed(evt);
             }
         });
 
-        jMenuItem2.setText("PACIENTE");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        cadPaciente.setText("PACIENTE");
+        cadPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                cadPacienteActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem2);
+        mnCadastro.add(cadPaciente);
 
-        jMenuItem3.setText("FUNCIONARIO");
-        jMenu3.add(jMenuItem3);
-        jMenu3.add(jSeparator1);
+        cadFuncionario.setText("FUNCIONARIO");
+        mnCadastro.add(cadFuncionario);
 
-        jMenuItem5.setText("teste janela");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        cadPlano.setText("PLANO");
+        cadPlano.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                cadPlanoActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem5);
+        mnCadastro.add(cadPlano);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(mnCadastro);
 
-        jMenu1.setText("RELATORIOS");
+        mnRelatorio.setText("RELATORIOS");
 
-        jMenu2.setText("PACIENTE");
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+        relPaciente.setText("PACIENTE");
+        relPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
+                relPacienteActionPerformed(evt);
             }
         });
 
-        jMenuItem4.setText("LISTA DE PACIENTES");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        listPaciente.setText("LISTA DE PACIENTES");
+        listPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                listPacienteActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        relPaciente.add(listPaciente);
 
-        jMenu1.add(jMenu2);
+        ficPaciente.setText("FICHA DO PACIENTE");
+        relPaciente.add(ficPaciente);
 
-        jMenuBar1.add(jMenu1);
+        ficProntuario.setText("PRONTUARIO");
+        relPaciente.add(ficProntuario);
+
+        mnRelatorio.add(relPaciente);
+
+        relFuncionario.setText("FUNCIONARIO");
+
+        jMenuItem2.setText("LISTA DE FUNCIONARIOS");
+        relFuncionario.add(jMenuItem2);
+
+        jMenuItem3.setText("FICHA DO FUNCIONARIO");
+        relFuncionario.add(jMenuItem3);
+
+        jMenuItem4.setText("AGENDA DO FUNCIONARIO");
+        relFuncionario.add(jMenuItem4);
+
+        mnRelatorio.add(relFuncionario);
+
+        jMenuBar1.add(mnRelatorio);
 
         mnSair.setText("SAIR");
         mnSair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -135,16 +158,11 @@ public class frmDesktop extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+    private void relPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relPacienteActionPerformed
         // TODO add your handling code here:
-        try {
-            new relPaciente();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: "+ e.getMessage());
-        }
-    }//GEN-LAST:event_jMenu2ActionPerformed
+    }//GEN-LAST:event_relPacienteActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void cadPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadPacienteActionPerformed
         // TODO add your handling code here:
         
         try {
@@ -152,33 +170,33 @@ public class frmDesktop extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,"Error: " + e.getMessage());
         }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_cadPacienteActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void listPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listPacienteActionPerformed
         // TODO add your handling code here:
         
         try {
-            new relPaciente();
+            new relPaciente().listPaciente();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: "+ e.getMessage());
         }
         
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_listPacienteActionPerformed
 
     private void mnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSairMouseClicked
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_mnSairMouseClicked
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void cadPlanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadPlanoActionPerformed
         // TODO add your handling code here:
        
         
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_cadPlanoActionPerformed
 
-    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+    private void mnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnCadastroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu3ActionPerformed
+    }//GEN-LAST:event_mnCadastroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,17 +234,22 @@ public class frmDesktop extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JMenuItem cadFuncionario;
+    public static javax.swing.JMenuItem cadPaciente;
+    public static javax.swing.JMenuItem cadPlano;
     public static javax.swing.JFrame desktop;
-    public static javax.swing.JMenu jMenu1;
-    public static javax.swing.JMenu jMenu2;
-    public static javax.swing.JMenu jMenu3;
+    public static javax.swing.JMenuItem ficPaciente;
+    public static javax.swing.JMenuItem ficProntuario;
     public static javax.swing.JMenuBar jMenuBar1;
     public static javax.swing.JMenuItem jMenuItem1;
     public static javax.swing.JMenuItem jMenuItem2;
     public static javax.swing.JMenuItem jMenuItem3;
     public static javax.swing.JMenuItem jMenuItem4;
-    public static javax.swing.JMenuItem jMenuItem5;
-    public static javax.swing.JPopupMenu.Separator jSeparator1;
+    public static javax.swing.JMenuItem listPaciente;
+    public static javax.swing.JMenu mnCadastro;
+    public static javax.swing.JMenu mnRelatorio;
     public static javax.swing.JMenu mnSair;
+    public static javax.swing.JMenu relFuncionario;
+    public static javax.swing.JMenu relPaciente;
     // End of variables declaration//GEN-END:variables
 }

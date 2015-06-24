@@ -486,21 +486,32 @@ public class frmPessoa extends javax.swing.JFrame {
 
         tbBusca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "CODIGO", "NOME", "CPF", "TELEFONE"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tbBusca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbBuscaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbBusca);
+        if (tbBusca.getColumnModel().getColumnCount() > 0) {
+            tbBusca.getColumnModel().getColumn(0).setResizable(false);
+            tbBusca.getColumnModel().getColumn(1).setResizable(false);
+            tbBusca.getColumnModel().getColumn(2).setResizable(false);
+            tbBusca.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);

@@ -10,6 +10,7 @@ public class modFuncionario {
     private String nome;
     private String rg;
     private String cpf;
+    private String sexo;
     private String endereco;
     private String bairro;
     private String cidade;
@@ -25,6 +26,36 @@ public class modFuncionario {
     private String cadastrado;
     private String atualizado;
 
+    public modFuncionario(int id, String nome, String rg, String cpf,
+                          String sexo, String endereco, String bairro,
+                          String cidade, String uf, String cep, String telefone,
+                          String celular, String email, String funcao,
+                          String conselho, String login, String senha,
+                          String cadastrado, String atualizado) {
+        this.id = id;
+        this.nome = nome;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.sexo = sexo;
+        this.endereco = endereco;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.uf = uf;
+        this.cep = cep;
+        this.telefone = telefone;
+        this.celular = celular;
+        this.email = email;
+        this.funcao = funcao;
+        this.conselho = conselho;
+        this.login = login;
+        this.senha = senha;
+        this.cadastrado = cadastrado;
+        this.atualizado = atualizado;
+    }
+
+    public modFuncionario() {
+    }
+   
     public String getLogin() {
         return login;
     }
@@ -168,5 +199,12 @@ public class modFuncionario {
     public void setAtualizado(String atualizado) {
         this.atualizado = atualizado;
     }
+ 
+    public String getSexo() {
+        return sexo;
+    }
 
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
 }

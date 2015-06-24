@@ -3,10 +3,11 @@ package view;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.modFuncionario;
-import controller.conFuncionario;
+import controller.ContFuncionario;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.table.DefaultTableModel;
+//import reports.relPaciente;
 
 /**
  * @data 19/06/2015
@@ -15,9 +16,9 @@ import javax.swing.table.DefaultTableModel;
 public class frmFuncionario extends javax.swing.JFrame {
 
     modFuncionario obj;
-    conFuncionario dao = new conFuncionario();
+    ContFuncionario dao = new ContFuncionario();
     int acao = 0;
-    
+
     /**
      * Creates new form frmFuncionario
      */
@@ -139,6 +140,11 @@ public class frmFuncionario extends javax.swing.JFrame {
 
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/48_delete.png"))); // NOI18N
         btnExcluir.setEnabled(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/48_print.png"))); // NOI18N
         btnImprimir.setEnabled(false);
@@ -727,24 +733,26 @@ public class frmFuncionario extends javax.swing.JFrame {
                     if (acao == 1) {
                         if (dao.insert(obj)) {
                             JOptionPane.showMessageDialog(this,
-                                "Cadastro realizado com sucesso!",
-                                "CADASTRO DE PACIENTES", 1);
+                                    "Cadastro realizado com sucesso!",
+                                    "CADASTRO DE PACIENTES", 1);
                             ativaMenu(false);
+                            this.acao = 0;
                             retornaObj(obj);
                         } else {
                             JOptionPane.showMessageDialog(this, "Erro ao cadastrar!",
-                                "CADASTRO DE PACIENTES", 1);
+                                    "CADASTRO DE PACIENTES", 1);
                         }
                     } else if (acao == 2) {
                         if (dao.update(obj)) {
                             JOptionPane.showMessageDialog(this,
-                                "Atualizado com sucesso!",
-                                "CADASTRO DE PACIENTES", 1);
+                                    "Atualizado com sucesso!",
+                                    "CADASTRO DE PACIENTES", 1);
                             ativaMenu(false);
+                            this.acao = 0;
                             retornaObj(obj);
                         } else {
                             JOptionPane.showMessageDialog(this, "Erro ao atualizar!",
-                                "CADASTRO DE PACIENTES", 1);
+                                    "CADASTRO DE PACIENTES", 1);
                         }
                     } else {
                         lbMessage.setText("Não reconheceu a ação!");
@@ -762,11 +770,10 @@ public class frmFuncionario extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-
-        ativaCampos(false);
-        ativaMenu(false);
-
         acao = 0;
+        ativaCampos(false);
+        limpaCampos();
+        ativaMenu(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -794,16 +801,12 @@ public class frmFuncionario extends javax.swing.JFrame {
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
 
-        int ln = tbBusca.getSelectedRow();
-
-        obj = new modFuncionario();
-
-        ln = Integer.parseInt(tbBusca.getValueAt(ln, 0));
+        int id = Integer.parseInt(tbBusca.getValueAt(tbBusca.getSelectedRow(), 0).toString());
 
         try {
-            retornaObj(dao.select(null, ln));
+            retornaObj(dao.selectId(id));
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: "+e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
 
         jTabbedPane2.setSelectedIndex(0);
@@ -827,7 +830,7 @@ public class frmFuncionario extends javax.swing.JFrame {
         try {
             ContFuncionario dao = new ContFuncionario();
 
-            lsPac = dao.selectAll(obj);
+            lsPac = dao.selectAll();
 
             tbl.addColumn("CODIOGO");
             tbl.addColumn("NOME");
@@ -855,6 +858,12 @@ public class frmFuncionario extends javax.swing.JFrame {
     private void edtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_edtEmailActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -952,7 +961,7 @@ public class frmFuncionario extends javax.swing.JFrame {
     private javax.swing.JTable tbBusca;
     // End of variables declaration//GEN-END:variables
 
-     /*
+    /*
      * METODOS UTILIZADOS PARA A FUNCINALIDADE DO FORMULARIO
      */
     private boolean validacampos() {
@@ -964,25 +973,24 @@ public class frmFuncionario extends javax.swing.JFrame {
             edtCpf.requestFocus();
             return false;
         }
-        
+
         if (edtNome.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Campo NOME em Branco não é"
                     + " permitido!", "Validar Campo", 0);
             edtNome.requestFocus();
             return false;
         }
-        
+
         if (edtTelefone.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Campo TELEFONE em Branco não é"
                     + " permitido!", "Validar Campo", 0);
             edtTelefone.requestFocus();
             return false;
         }
-        
-        
+
         return true;
     }
-    
+
     private void limpaCampos() {
         //limpando os campos de texto
 
@@ -1002,9 +1010,13 @@ public class frmFuncionario extends javax.swing.JFrame {
         cbxSexo.setSelectedIndex(0);
         lbMessage.setText(null);
         lbEmail.setText(null);
-        
+        edtUsuario.setText(null);
+        edtSenha.setText(null);
+        cbFuncao.setSelectedIndex(0);
+        edtConselho.setText(null);
+
     }
-    
+
     private void ativaCampos(boolean ativo) {
         //ativando oss campos para escrever 
 
@@ -1021,9 +1033,20 @@ public class frmFuncionario extends javax.swing.JFrame {
         edtTelefone.setEnabled(ativo);
         edtUf.setEnabled(ativo);
         cbxSexo.setEnabled(ativo);
-        
+        if (acao == 2) {
+            edtUsuario.setEnabled(!ativo);
+            edtSenha.setEnabled(!ativo);
+            cbFuncao.setEnabled(!ativo);
+            edtConselho.setEnabled(!ativo);
+        } else {
+            edtUsuario.setEnabled(ativo);
+            edtSenha.setEnabled(ativo);
+            cbFuncao.setEnabled(ativo);
+            edtConselho.setEnabled(ativo);
+        };
+
     }
-    
+
     private void ativaMenu(boolean ativo) {
         //barra de meus
 
@@ -1035,13 +1058,13 @@ public class frmFuncionario extends javax.swing.JFrame {
         }
         btnSalvar.setEnabled(ativo);
         btnCancelar.setEnabled(ativo);
-        
+
     }
-    
+
     private boolean preencehrObj() throws Exception {
-        
-        obj = new modPaciente();
-        
+
+        obj = new modFuncionario();
+
         obj.setNome(edtNome.getText());
         obj.setEndereco(edtEndereco.getText());
         obj.setBairro(edtBairro.getText());
@@ -1053,11 +1076,11 @@ public class frmFuncionario extends javax.swing.JFrame {
         obj.setCep(edtCep.getText());
         obj.setUf(edtUf.getText());
         obj.setSexo(cbxSexo.getSelectedItem().toString().toUpperCase());
-        
+
         return true;
     }
-    
-    private void retornaObj(modPaciente Obj) {
+
+    private void retornaObj(modFuncionario Obj) {
         //retorna obj para o formulario    
 
         edtBairro.setText(obj.getBairro());
@@ -1073,14 +1096,14 @@ public class frmFuncionario extends javax.swing.JFrame {
         edtTelefone.setText(obj.getTelefone());
         edtUf.setText(obj.getUf());
         cbxSexo.setSelectedItem(Obj.getSexo());
-        
+
     }
-    
+
     private void preencherTb() throws Exception {
-        
+
         ArrayList dados = new ArrayList();
         String[] colunas = new String[]{"id", "nome", "cpf", "telefone"};
-        
+
     }
 
 }

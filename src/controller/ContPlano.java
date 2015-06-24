@@ -9,7 +9,7 @@ import model.modPlano;
  * @data 19/06/2015
  * @author RUI PENTEADO
  */
-public class conPlano {
+public class ContPlano {
 
     //ATRIBUTOS
     private String sql;

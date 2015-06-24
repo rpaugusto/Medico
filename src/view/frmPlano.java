@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import model.modPlano;
-import controller.conPlano;
+import controller.ContPlano;
 
 /**
  * @data 19/06/2015
@@ -11,7 +11,7 @@ import controller.conPlano;
 public class frmPlano extends javax.swing.JFrame {
 
     int acao = 0;
-   conPlano dao = new conPlano();
+   ContPlano dao = new ContPlano();
    modPlano obj;
     
     /**
