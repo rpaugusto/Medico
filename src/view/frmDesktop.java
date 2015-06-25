@@ -122,6 +122,11 @@ public class frmDesktop extends javax.swing.JFrame {
         relFuncionario.setText("FUNCIONARIO");
 
         jMenuItem2.setText("LISTA DE FUNCIONARIOS");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         relFuncionario.add(jMenuItem2);
 
         jMenuItem3.setText("FICHA DO FUNCIONARIO");
@@ -164,23 +169,23 @@ public class frmDesktop extends javax.swing.JFrame {
 
     private void cadPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadPacienteActionPerformed
         // TODO add your handling code here:
-        
+
         try {
             new frmPessoa().setVisible(true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
     }//GEN-LAST:event_cadPacienteActionPerformed
 
     private void listPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listPacienteActionPerformed
         // TODO add your handling code here:
-        
+
         try {
             new relPaciente().listPaciente();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: "+ e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
-        
+
     }//GEN-LAST:event_listPacienteActionPerformed
 
     private void mnSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnSairMouseClicked
@@ -190,13 +195,20 @@ public class frmDesktop extends javax.swing.JFrame {
 
     private void cadPlanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadPlanoActionPerformed
         // TODO add your handling code here:
-       
-        
+        try {
+            new frmPlano().setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
     }//GEN-LAST:event_cadPlanoActionPerformed
 
     private void mnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnCadastroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mnCadastroActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

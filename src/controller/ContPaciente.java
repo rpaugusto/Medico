@@ -153,21 +153,16 @@ public class ContPaciente {
 
     }
 
-    public ArrayList<modPaciente> selectAll(modPaciente obj) throws SQLException {
+    public ArrayList<modPaciente> selectAll() throws SQLException {
 
         modPaciente loc;
 
         Conexao con = new Conexao();
 
         ArrayList<modPaciente> lsPac = new ArrayList<>();
-        if (obj.getNome().equals(null)) {
-            this.sql = "SELECT * FROM pessoas";
-            this.ps = con.openCon().prepareStatement(this.sql);
-        } else {
-            this.sql = "SELECT * FROM pessoas WHERE nome LIKE ?";
-            this.ps = con.openCon().prepareStatement(this.sql);
-            this.ps.setString(1, (obj.getNome() + "%"));
-        }
+
+        this.sql = "SELECT * FROM pessoas ";
+        this.ps = con.openCon().prepareStatement(this.sql);
 
         this.rs = this.ps.executeQuery();
 

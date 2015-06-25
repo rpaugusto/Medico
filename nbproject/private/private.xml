@@ -4,7 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Users/rui/Documents/JAVA/Medico/src/view/frmPlano.java</file>
-            <file>file:/D:/Users/rui/Documents/JAVA/Medico/reports/relFicFuncionario.jrxml</file>
+            <file>file:/D:/Users/rui/Documents/JAVA/Medico/src/view/frmPessoa.java</file>
+            <file>file:/D:/Users/rui/Documents/JAVA/Medico/src/controller/ContPlano.java</file>
+            <file>file:/D:/Users/rui/Documents/JAVA/Medico/src/controller/ContPaciente.java</file>
+            <file>file:/D:/Users/rui/Documents/JAVA/Medico/src/view/frmDesktop.java</file>
         </group>
     </open-files>
 </project-private>

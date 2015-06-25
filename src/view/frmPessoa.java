@@ -728,7 +728,7 @@ public class frmPessoa extends javax.swing.JFrame {
         try {
             ContPaciente dao = new ContPaciente();
 
-            lsPac = dao.selectAll(obj);
+            lsPac = dao.selectAll();
 
             tbl.addColumn("CODIOGO");
             tbl.addColumn("NOME");
